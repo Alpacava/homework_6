@@ -37,18 +37,22 @@ $(document).ready(function() {
 		//save quantity,cover,fill selected
 		function saveChoicesLocally() {
 
+			var nameToSave = $("#item-name").text();
 			var quantityToSave = $("#item-quantity").val();
 			var coverToSave = $("#pillow-cover").val();
 			var fillToSave = $("#pillow-fill").val();
+			var priceToSave = $("#unit-price").text();
 			var pic = $('#pillow-cover').find('option:selected').attr('data-pic');
 
 			alert(quantityToSave + coverToSave + fillToSave);
 
-			var itemToSave = {itemPic: pic,
-				itemName:"Geometric Couch Pillow Set", 
+			var itemToSave = 
+				{itemPic: pic,
+				itemName: nameToSave, 
 				itemQty: quantityToSave, 
 				itemCover: coverToSave, 
-				itemFill:fillToSave};
+				itemFill:fillToSave,
+				itemPrice: priceToSave};
 
 			var allItems = getFromStorage();
 			allItems.push(itemToSave);
