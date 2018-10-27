@@ -1,52 +1,57 @@
 $(document).ready(function() {
 
-	initializedisplay();
+	initialize();
 
-	var cartStorage = getFromStorage();
-
-	//it nothing in cart, do not show the table
-	function initializedisplay() {
-		if (cartStorage == null) {
-			$("cart-display").hide();
+	function initialize() {
+		//if nothing has been added or everything has been deleted
+		//OR operator reference:https://stackoverflow.com/questions/40221998/using-or-operator-in-a-jquery-if-statement
+		if ((localStorage.getItem("selectedItem") == null )|| (localStorage.getItem("selectedItem") == '[]')) {
+			console.log ('cart empty!');
+			$('#cart-table').hide();
+			$('#empty-cart').text('Your cart is empty!');
+			$('#empty-cart').css('padding-top','50px');
+			$('#checkout').hide();
 		}
-		else {};
+
+		else {}
 	};
-	
-	var subTotal = 0;
 
 	//get each item in local storage, create a table row for each
-	for (let i = 0; i < cartStorage.length; i++) {
-		var item = cartStorage[i];
-		var unitPrice = parseFloat(item.itemPrice);
-		var totalPrice = unitPrice * item.itemQty;
+		var cartStorage = getFromStorage();
+		var subTotal = 0;
+
+		for (let i = 0; i < cartStorage.length; i++) {
+			var item = cartStorage[i];
+			var unitPrice = parseFloat(item.itemPrice);
+			var totalPrice = unitPrice * item.itemQty;
 
 
-	//reference for adding elements to a table row: https://stackoverflow.com/questions/171027/add-table-row-in-jquery	
-		$("#cart-table").find('tbody')
-		.append($('<tr>').addClass('rowStart'))
-		.append($('<img>').attr('src', item.itemPic).addClass("displaypic"))
-		.append($("<td>" + item.itemName +"</td>"))
-		.append($("<td>" + "Cover: " + item.itemCover + "<br>" + "Fill: " + item.itemFill +"</td>"))
-		.append($("<td>" + item.itemQty +"</td>"))
-		.append($("<td>$" + item.itemPrice +"</td>"))
-		.append($("<td>$" + totalPrice + "</td>").addClass("totalPrice"))
-		.append($("<td>Delete Item</td>").attr('id',item.itemID).addClass('removeButton'))
-		.append($("</tr>"));
+		//reference for adding elements to a table row: https://stackoverflow.com/questions/171027/add-table-row-in-jquery	
+			$("#cart-table").find('tbody')
+			.append($('<tr>').addClass('rowStart'))
+			.append($('<img>').attr('src', item.itemPic).addClass("displaypic"))
+			.append($("<td>" + item.itemName +"</td>"))
+			.append($("<td>" + "Cover: " + item.itemCover + "<br>" + "Fill: " + item.itemFill +"</td>"))
+			.append($("<td>" + item.itemQty +"</td>"))
+			.append($("<td>$" + item.itemPrice +"</td>"))
+			.append($("<td>$" + totalPrice + "</td>").addClass("totalPrice"))
+			.append($("<td>Delete Item</td>").attr('id',item.itemID).addClass('removeButton'))
+			.append($("</tr>"));
 
-	calculateTotal();
+		calculateTotal();
 
-	//calculate subtotal
-		function calculateTotal() {
-			subTotal += totalPrice;
-			$("#subtotal").html("$"+subTotal);
-			console.log(subTotal);
-		}
-	};
+		//calculate subtotal
+			function calculateTotal() {
+				subTotal += totalPrice;
+				$("#subtotal").html("$"+subTotal);
+				console.log(subTotal);
+			}
+		};	
 	
 
 	//delete item from local storage
 	$(".removeButton").click(function() {
-		alert('clicked!')
+		alert('Deleted!')
 
 		var buttonid = $(this).attr('id');
 
@@ -68,8 +73,10 @@ $(document).ready(function() {
 				//update local storage
 				localStorage.setItem('selectedItem',JSON.stringify(cartStorage));
 
-
-				updateCartItem();
+				//after deleting something, update cart count and page display
+				updateCartCount();
+				//refresh to shwo updated cart
+				location.reload();
 			}
 		}
 	});

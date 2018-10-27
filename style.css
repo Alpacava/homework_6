@@ -390,6 +390,16 @@ a {
 	width:30px;
 }
 
+.cart-display {
+	color:gray;
+	font-size:16px;
+}
+
+#empty-cart {
+	font-size:28px;
+	text-align: center;
+}
+
 #cart-table {
 	padding-top:50px;
 	padding-left:100px;
