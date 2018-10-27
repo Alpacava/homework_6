@@ -412,3 +412,34 @@ th, td {
 	height:100px;
 	width:100px;
 }
+
+.removeButton {
+	font-size:13px;
+	color:gray;
+}
+
+.itemRow {
+	color:red;
+	background-color:green;
+}
+
+#keep-shopping {
+	font-size:18px;
+	color:white;
+	background-color: gray;
+	border-radius: 4px;
+	padding:5px;
+	margin-left:10%;
+	margin-top:20px;
+}
+
+#checkout {
+	font-size:18px;
+	color:white;
+	background-color: orange;
+	border-radius: 4px;
+	padding:8px;
+	float:right;
+	margin-right:10%;
+	margin-top:20px;
+}

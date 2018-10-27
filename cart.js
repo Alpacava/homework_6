@@ -1,36 +1,83 @@
 $(document).ready(function() {
 
-	//testing
-	if(localStorage.getItem("selectedItem") == null) {
-			alert("Your cart is empty!");
-	}
-
-	else {
-			alert("Item in your cart!");
-	}
+	initializedisplay();
 
 	var cartStorage = getFromStorage();
 
-	//get each item in local storage
+	//it nothing in cart, do not show the table
+	function initializedisplay() {
+		if (cartStorage == null) {
+			$("cart-display").hide();
+		}
+		else {};
+	};
+	
+	var subTotal = 0;
+
+	//get each item in local storage, create a table row for each
 	for (let i = 0; i < cartStorage.length; i++) {
 		var item = cartStorage[i];
-		unitPrice = parseFloat(item.itemPrice);
-		totalPrice = unitPrice * item.itemQty;
-		var cartSubtotal = 0;
-	
+		var unitPrice = parseFloat(item.itemPrice);
+		var totalPrice = unitPrice * item.itemQty;
+
+
 	//reference for adding elements to a table row: https://stackoverflow.com/questions/171027/add-table-row-in-jquery	
 		$("#cart-table").find('tbody')
-		.append($("<tr>"))
+		.append($('<tr>').addClass('rowStart'))
 		.append($('<img>').attr('src', item.itemPic).addClass("displaypic"))
-		.append($("<th>" + item.itemName +"</th>"))
-		.append($("<th>" + "Cover: " + item.itemCover + "<br>" + "Fill: " + item.itemFill +"</th>"))
-		.append($("<th>" + item.itemQty +"</th>"))
-		.append($("<th>$" + item.itemPrice +"</th>"))
-		.append($("<th>$" + totalPrice + "</th>"))
-		.append($("</tr>"))
+		.append($("<td>" + item.itemName +"</td>"))
+		.append($("<td>" + "Cover: " + item.itemCover + "<br>" + "Fill: " + item.itemFill +"</td>"))
+		.append($("<td>" + item.itemQty +"</td>"))
+		.append($("<td>$" + item.itemPrice +"</td>"))
+		.append($("<td>$" + totalPrice + "</td>").addClass("totalPrice"))
+		.append($("<td>Delete Item</td>").attr('id',item.itemID).addClass('removeButton'))
+		.append($("</tr>"));
 
+	calculateTotal();
+
+	//calculate subtotal
+		function calculateTotal() {
+			subTotal += totalPrice;
+			$("#subtotal").html("$"+subTotal);
+			console.log(subTotal);
+		}
 	};
+	
 
+	//delete item from local storage
+	$(".removeButton").click(function() {
+		alert('clicked!')
+
+		var buttonid = $(this).attr('id');
+
+		//match button with item
+		for(let i = 0; i < cartStorage.length; i++) {
+			if (cartStorage[i].itemID == buttonid) {
+				cartStorage.splice(i,1);
+				//remove the delete button
+				$(this).hide();
+				//remove the whole row
+				$(this).prev().remove();
+				$(this).prev().remove();
+				$(this).prev().remove();
+				$(this).prev().remove();
+				$(this).prev().remove();
+				$(this).prev().remove();
+
+				console.log(cartStorage);
+				//update local storage
+				localStorage.setItem('selectedItem',JSON.stringify(cartStorage));
+
+
+				updateCartItem();
+			}
+		}
+	});
+
+	//print the subtotal in the last row
+	
+
+	//get localstorage
 	function getFromStorage() {
 		var storage = localStorage.getItem("selectedItem");
 		if(storage) {
@@ -40,5 +87,29 @@ $(document).ready(function() {
 			return [];	
 		}
 	};
+
+	function updateCartCount() {
+		cartItems = getFromStorage()
+		//if localstorage is empty, show 0 items in cart
+		if (cartItems == null) {
+			$("#item-number").text("0");
+		}
+
+		//when there is something in localstorage, sum up the quantity of each object and show
+		else {
+			cartStorage = getFromStorage();
+			var totalCount = 0;
+
+			for (let i = 0; i < cartStorage.length; i++) {
+					
+				var item = cartStorage[i];
+				itemCount = parseInt(item.itemQty);
+				totalCount = totalCount + itemCount; 
+
+			$("#item-number").text(totalCount);
+			console.log(totalCount);}
+			}
+	};
+
 });
 

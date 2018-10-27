@@ -12,26 +12,16 @@ function changePicture() {
 
 $(document).ready(function() {
 
-	showCartItem();
+	//upon opening the page, show how many items in local storage
+	updateCartCount();
 
-	//show how many items are stored locally upon open the page
-	function showCartItem() {
-		var itemCount = JSON.parse(localStorage.getItem("storedItem"));
 
-		if (itemCount === null) {
-			$("#item-number").text("0");
-		}
-
-		else {
-			$("#item-number").text(itemCount);
-		}
-		localStorage.setItem("storedItem",JSON.stringify(itemCount));
-	};
-
+	//when click to add to cart, save choices and update shopping cart count
 	$("#add-to-cart").click(function() {
 	//save the choices customer makes and reflect in shopping cart
 		saveChoicesLocally();
-		updateCartItem();
+		updateCartCount();
+	});
 
 
 		//save quantity,cover,fill selected
@@ -43,26 +33,32 @@ $(document).ready(function() {
 			var fillToSave = $("#pillow-fill").val();
 			var priceToSave = $("#unit-price").text();
 			var pic = $('#pillow-cover').find('option:selected').attr('data-pic');
+			var idToSave = uniqueId();
 
-			alert(quantityToSave + coverToSave + fillToSave);
+			//create unique id for items saved; reference: https://gist.github.com/gordonbrander/2230317	
+			function uniqueId () {
+				return '_' + Math.random().toString(36).substr(2, 9);
+			};
 
+			//create an object to save
 			var itemToSave = 
 				{itemPic: pic,
 				itemName: nameToSave, 
 				itemQty: quantityToSave, 
 				itemCover: coverToSave, 
 				itemFill:fillToSave,
-				itemPrice: priceToSave};
+				itemPrice: priceToSave,
+				itemID:idToSave};
 
+			//save objects in array	
 			var allItems = getFromStorage();
 			allItems.push(itemToSave);
 			localStorage.setItem("selectedItem",JSON.stringify(allItems));
 
 			console.log(JSON.stringify(allItems));
-
 		};	
 
-		//code to streamline parsing strings got from Asit's tutor session
+		//code to streamline parsing strings (got from Asit's tutor session)
 		function getFromStorage() {
 			var storage = localStorage.getItem("selectedItem");
 			if(storage) {
@@ -73,20 +69,27 @@ $(document).ready(function() {
 			}
 		};
 
-		//save quantity,cover,fill selected
-		function updateCartItem() {
-			var itemCount = parseInt("item-quantity",0);
-			itemCount = JSON.parse(localStorage.getItem("storedItem"));
-			itemCount = itemCount + parseInt($('#item-quantity').val());
-
-			if (itemCount === null) {
+		//update how many items are in the cart
+		function updateCartCount() {
+			cartItems = getFromStorage()
+			//if localstorage is empty, show 0 items in cart
+			if (cartItems == null) {
 				$("#item-number").text("0");
 			}
 
+			//when there is something in localstorage, sum up the quantity of each object and show
 			else {
-				$("#item-number").text(itemCount);
+				cartStorage = getFromStorage();
+				var totalCount = 0;
+
+				for (let i = 0; i < cartStorage.length; i++) {
+					
+					var item = cartStorage[i];
+					itemCount = parseInt(item.itemQty);
+					totalCount = totalCount + itemCount; 
+
+				$("#item-number").text(totalCount);
+				console.log(totalCount);}
 			}
-			localStorage.setItem("storedItem",JSON.stringify(itemCount));
-		};	
-	});	
+		};
 });	
