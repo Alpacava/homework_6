@@ -299,10 +299,24 @@ a {
 
 /*product detail page*/
 
+.item-nav {
+	color:#757575; 
+	padding-left:10%;
+}
+
+#back-to-shop {
+	text-decoration: underline;
+	font-size: 18px;
+}
+
 .product-detail {
 	display: flex;
 	flex-direction: row;
 	color:gray;
+}
+
+#shop-on-detail {
+	color:#757575;
 }
 
 .detail-pic {
@@ -319,6 +333,13 @@ a {
 	border-radius: 10px;
 	border-width: 1px;
 	border-color:gray;
+}
+
+#pillow-img {
+	width:300px;
+	height:300px;
+	padding-right:10px;
+	padding-left:10px;
 }
 
 .detail {
@@ -362,6 +383,16 @@ a {
 	border-style:solid;
 	border-width: 0.8px;
 	border-color:gray;
+}
+
+#unit {
+	padding-left: 20px;
+}
+
+#also-like {
+	color:#757575;
+	padding-left:15%;
+	font-size: 20px;
 }
 
 /*shopping cart page*/

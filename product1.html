@@ -33,7 +33,7 @@
     	<div class="nav" id="listing-nav">
 	    	<div class="nav-half">
 	       		<span id="about">About</span>
-	     		<a id="shop" style="color:#757575" href="listing.html">Shop</a>
+	     		<a id="shop-on-detail" href="listing.html">Shop</a>
 	       	</div>
 	       	<div class="nav-half">        
 	       		<span id="find-us">Find Us</span>
@@ -42,16 +42,16 @@
 	    </div>
 	</header>
 
-	<div style="color:#757575; padding-left:10%;">
+	<div class="item-nav">
 		<br>
-		<a href="listing.html" style="text-decoration: underline;">Shop</a>
-		<span>&nbsp;&nbsp;> Geometric Couch Pillow Set</span>
+		<a href="listing.html"><span id="back-to-shop">Shop</span></a>
+		<span>&nbsp;&nbsp;> Simple Couch Pillow Set</span>
 	</div>
 
 	<div class="product-detail">
 		<!-- pictures on the left-->
 		<div class="detail-pic">
-			<img id="pillow-img" src="images/school.jpeg" alt="demo pillow picture" style="width:300px;height: 300px;padding-right: 10px;padding-left: 10px;">
+			<img id="pillow-img" src="images/couch-school.jpeg" alt="demo pillow picture">
   		</div>	
   		<!-- descriptions on the right -->
 		<div class="detail">
@@ -79,10 +79,10 @@
 			<div class="dropdown">
 				<span>Select Cover:</span>
 				<select id="pillow-cover" onchange="changePicture();">
-				  <option value="After School Special" data-pic="images/school.jpeg">After School Special</option>
-				  <option value="Morning Haze" data-pic="images/haze.jpeg">Morning Haze</option>
-				  <option value="Cozy Denim" data-pic="images/denim.jpeg">Cozy Denim</option>
-				  <option value="Rainy Day" data-pic="images/rainy.jpeg">Rainy Day</option>
+				  <option value="After School Special" data-pic="images/couch-school.jpeg">After School Special</option>
+				  <option value="Morning Haze" data-pic="images/couch-haze.jpeg">Morning Haze</option>
+				  <option value="Cozy Denim" data-pic="images/couch-denim.jpeg">Cozy Denim</option>
+				  <option value="Rainy Day" data-pic="images/couch-rainy.jpeg">Rainy Day</option>
 				</select>
 			</div>
 			<br>
@@ -95,7 +95,7 @@
 				</select>
 			</div>
 			<br>
-			<span style="padding-left:20px;">Unit Price:&nbsp;$</span>
+			<span id="unit"">Unit Price:$</span>
 			<span id="unit-price">39.99</span>
 			<div class="buy">
 				<button id="add-to-cart">Add to Cart</button>
@@ -103,7 +103,7 @@
 		</div>
 	</div>
 	<br>
-	<p style="color:#757575;padding-left:15%;font-size: 20px;">You May Also Like:</p>
+	<p id="also-like">You May Also Like:</p>
 	<div class="product-listing">
 		<div class="product">
 			<img src="images/1.png" alt="pretty pillow picture">
