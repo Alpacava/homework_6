@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Geometric Couch Pillow Set</title>
+	<meta charset="UTF-8">
+	<!-- styles -->
+    	<link rel="stylesheet" type="text/css" href="style.css">
+    <!-- fonts -->
+    	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <!-- script -->
+    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="main.js" type="text/javascript"></script>
+</head>
+
+<body>
+	<header id="listing-header">
+		<div>
+            <img id="search" src="images/search.png">
+            <a href="shopping-cart.html">
+                <div class="shoppingcart">
+                    <div class="cartcontainer">
+                        <img id="cart" src="images/cart.png">
+                    </div>
+                    <div class=itemcontainer>
+                        <span id="items">Items:</span>
+                        <span id="item-number" value="0">0</span>
+                    </div>
+                </div>
+            </a>
+        </div>    
+    	<a href="homepage.html"><h3>Fluff Stuff</h3></a>
+    	<h4>Your Throw Pillow Artist.</h4>
+    	<div class="nav" id="listing-nav">
+	    	<div class="nav-half">
+	       		<span id="about">About</span>
+	     		<a id="shop-on-detail" href="listing.html">Shop</a>
+	       	</div>
+	       	<div class="nav-half">        
+	       		<span id="find-us">Find Us</span>
+	        	<span id="contact">Contact</span>
+	        </div>
+	    </div>
+	</header>
+
+	<div class="item-nav">
+		<br>
+		<a href="listing.html"><span id="back-to-shop">Shop</span></a>
+		<span>&nbsp;&nbsp;>Comfy Floor Pouf</span>
+	</div>
+
+	<div class="product-detail">
+		<!-- pictures on the left-->
+		<div class="detail-pic">
+			<img id="pillow-img" src="images/pouf-rainy.jpg" alt="demo pillow picture">
+  		</div>	
+  		<!-- descriptions on the right -->
+		<div class="detail">
+			<p id="item-name">Comfy Floor Pouf</p>
+			<br>
+			<div>
+				<p>Specifications:</p>
+				<span>- 20 in x 20 in</span><br>
+				<span>- Includes One Floor Pouf</span><br>
+				<span>- Hand-knitted</span><br>
+				<span>- Cotton yam</span><br>
+				<span>- Made locally in Pitttsburgh, PA</span><br>
+			</div>
+			<br>
+			<div class="dropdown">
+				<span>Select Quantity:</span>
+				<select id="item-quantity">
+				  <option value="1">1</option>
+				  <option value="2">2</option>
+				  <option value="3">3</option>
+				  <option value="4">4</option>
+				</select>
+			</div>
+			<br>
+			<div class="dropdown">
+				<span>Select Cover:</span>
+				<select id="pillow-cover" onchange="changePicture();">
+				  <option value="After School Special" data-pic="images/pouf-school.jpg">After School Special</option>
+				  <option value="Morning Haze" data-pic="images/pouf-haze.jpg">Morning Haze</option>
+				  <option value="Cozy Denim" data-pic="images/pouf-denim.jpg">Cozy Denim</option>
+				  <option value="Rainy Day" data-pic="images/pouf-rainy.jpg">Rainy Day</option>
+				</select>
+			</div>
+			<br>
+			<div class="dropdown">
+				<span>Select Fill:</span>
+				<select id="pillow-fill">
+				  <option value="Duck Down">Duck Down</option>
+				  <option value="Hypoallergic Polyblend">Hypoallergic Polyblend</option>
+				  <option value="Memory Foam">Memory Foam</option>
+				</select>
+			</div>
+			<br>
+			<span id="unit"">Unit Price:$</span>
+			<span id="unit-price">69.99</span>
+			<div class="buy">
+				<button id="add-to-cart">Add to Cart</button>
+			</div>
+		</div>
+	</div>
+	<br>
+	<p id="also-like">You May Also Like:</p>
+	<div class="product-listing">
+		<div class="product">
+			<img src="images/1.png" alt="pretty pillow picture">
+			<p>11-Piece Couch Pillow Set</p>
+			<p>$49.99</p>
+		</div>
+		<div class="product">
+			<img src="images/3.png" alt="pretty pillow picture">
+			<p>Leaf Couch Pillow Set</p>
+			<p>$34.99</p>
+		</div>
+		<div class="product">
+			<img src="images/4.png" alt="pretty pillow picture">
+			<p>Black and White Forest</p>
+			<p>$19.99</p>
+		</div>
+	</div>

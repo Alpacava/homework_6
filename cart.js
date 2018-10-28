@@ -51,7 +51,7 @@ $(document).ready(function() {
 
 	//delete item from local storage
 	$(".removeButton").click(function() {
-		alert('Deleted!')
+		alert('Item Deleted!')
 
 		var buttonid = $(this).attr('id');
 
